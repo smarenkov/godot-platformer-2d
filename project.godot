@@ -43,6 +43,9 @@ move_right={
 
 [layer_names]
 
+2d_render/layer_1="General"
+2d_render/layer_2="Enemies"
+2d_render/layer_3="Player"
 2d_physics/layer_1="Default"
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Player"

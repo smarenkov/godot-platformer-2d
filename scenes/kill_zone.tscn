@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceeo4yr3pa5uq"]
+[gd_scene load_steps=3 format=3 uid="uid://ceeo4yr3pa5uq"]
 
 [ext_resource type="Script" path="res://scripts/kill_zone.gd" id="1_k7gnx"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_igfks"]
+
 [node name="KillZone" type="Area2D"]
+light_mask = 4
+visibility_layer = 4
 script = ExtResource("1_k7gnx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+shape = SubResource("WorldBoundaryShape2D_igfks")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
