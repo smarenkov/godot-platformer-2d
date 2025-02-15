@@ -1,0 +1,144 @@
+[gd_scene load_steps=18 format=3 uid="uid://cplkhsxfpkrap"]
+
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_25pca"]
+[ext_resource type="PackedScene" uid="uid://ceeo4yr3pa5uq" path="res://scenes/kill_zone.tscn" id="2_ftte3"]
+[ext_resource type="Texture2D" uid="uid://b62oar3k44pcr" path="res://assets/sprites/slime_green.png" id="2_hfvw1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mivrd"]
+size = Vector2(20, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1mnl"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6ofn"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xord"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykp4p"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkya1"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oncyd"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvfx1"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52apr"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hhou"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ogi3"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ve8cv"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1tmg"]
+atlas = ExtResource("2_hfvw1")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gw6tg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1mnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6ofn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xord")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykp4p")
+}],
+"loop": true,
+"name": &"awake",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkya1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oncyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvfx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52apr")
+}],
+"loop": true,
+"name": &"damage",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hhou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ogi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ve8cv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1tmg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="Green Slime" type="Node2D"]
+position = Vector2(0, -6)
+script = ExtResource("1_25pca")
+
+[node name="KillZone" parent="." instance=ExtResource("2_ftte3")]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_mivrd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gw6tg")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0076921
+
+[node name="RayCasts" type="Node2D" parent="."]
+
+[node name="RayCastRight" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, 6)
+target_position = Vector2(15, 0)
+
+[node name="RayCastGround" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, 6)
+target_position = Vector2(0, 6)
+
+[node name="RayCastLeft" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, 6)
+target_position = Vector2(-15, 0)
