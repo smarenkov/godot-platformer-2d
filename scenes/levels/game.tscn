@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://de4q4rqen34jm"]
+[gd_scene load_steps=19 format=4 uid="uid://de4q4rqen34jm"]
 
 [ext_resource type="TileSet" uid="uid://c32n5jupsf1se" path="res://assets/tilemaps/world.tres" id="1_6x03c"]
 [ext_resource type="Script" path="res://scenes/levels/level_manager.gd" id="1_i5i0k"]
@@ -55,6 +55,11 @@ _data = {
 "RESET": SubResource("Animation_k5gv3"),
 "move": SubResource("Animation_1s48t")
 }
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_squg1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7w1jt"]
+radius = 7.0
 
 [node name="Game" type="Node2D"]
 position = Vector2(2014, -405)
@@ -173,14 +178,31 @@ visibility_layer = 0
 position = Vector2(451, 213)
 collision_mask = 4
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BottomKillZone"]
+shape = SubResource("WorldBoundaryShape2D_squg1")
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Green Slime" parent="Enemies" instance=ExtResource("6_myw4e")]
 position = Vector2(337, -78)
 speed = 40
 
+[node name="KillZone" parent="Enemies/Green Slime" instance=ExtResource("4_0efpy")]
+position = Vector2(0, 6)
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemies/Green Slime/KillZone"]
+shape = SubResource("CircleShape2D_7w1jt")
+
 [node name="Green Slime2" parent="Enemies" instance=ExtResource("6_myw4e")]
 position = Vector2(631, -133)
+
+[node name="KillZone" parent="Enemies/Green Slime2" instance=ExtResource("4_0efpy")]
+position = Vector2(0, 6)
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemies/Green Slime2/KillZone"]
+shape = SubResource("CircleShape2D_7w1jt")
 
 [connection signal="coin_pick_up" from="LevelManager" to="UI" method="_on_level_manager_coin_pick_up"]
 [connection signal="ready" from="TextSign/Label" to="Player" method="_on_label_ready"]
