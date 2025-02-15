@@ -184,8 +184,12 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_5cjhc")
 animation = &"jump"
 autoplay = "idle"
-frame_progress = 0.900943
+frame_progress = 0.200276
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_l6y3n")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
