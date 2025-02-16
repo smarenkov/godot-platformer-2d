@@ -4,7 +4,9 @@ extends Area2D
 
 func _on_body_entered(body) -> void:
 	print("Someone reach bottom kill zone" + str(body))
-	timer.start()
+	if !%Player.is_death: 
+		%Player._death()
+		timer.start()
 
 
 func _on_timer_timeout() -> void:

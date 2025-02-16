@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b62oar3k44pcr" path="res://assets/sprites/slime_green.png" id="2_hfvw1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_18gcw"]
+radius = 7.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s1mnl"]
 atlas = ExtResource("2_hfvw1")
@@ -37,19 +38,19 @@ region = Rect2(48, 48, 24, 24)
 atlas = ExtResource("2_hfvw1")
 region = Rect2(72, 48, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5hhou"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm42r"]
 atlas = ExtResource("2_hfvw1")
 region = Rect2(0, 24, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ogi3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2sy3"]
 atlas = ExtResource("2_hfvw1")
 region = Rect2(24, 24, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ve8cv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_57ma5"]
 atlas = ExtResource("2_hfvw1")
 region = Rect2(48, 24, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j1tmg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh8ni"]
 atlas = ExtResource("2_hfvw1")
 region = Rect2(72, 24, 24, 24)
 
@@ -91,16 +92,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5hhou")
+"texture": SubResource("AtlasTexture_xm42r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2ogi3")
+"texture": SubResource("AtlasTexture_o2sy3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ve8cv")
+"texture": SubResource("AtlasTexture_57ma5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j1tmg")
+"texture": SubResource("AtlasTexture_uh8ni")
 }],
 "loop": true,
 "name": &"idle",
@@ -108,30 +109,28 @@ animations = [{
 }]
 
 [node name="Green Slime" type="Area2D"]
-position = Vector2(0, -6)
+position = Vector2(0, -8)
 gravity_point = true
 script = ExtResource("1_25pca")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_18gcw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_gw6tg")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.982079
+frame_progress = 0.186986
 
 [node name="RayCasts" type="Node2D" parent="."]
 
 [node name="RayCastRight" type="RayCast2D" parent="RayCasts"]
-position = Vector2(0, 6)
 target_position = Vector2(15, 0)
 
 [node name="RayCastGround" type="RayCast2D" parent="RayCasts"]
-position = Vector2(0, 6)
-target_position = Vector2(0, 7)
+target_position = Vector2(0, 9)
 
 [node name="RayCastLeft" type="RayCast2D" parent="RayCasts"]
-position = Vector2(0, 6)
 target_position = Vector2(-15, 0)

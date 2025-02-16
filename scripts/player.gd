@@ -6,6 +6,8 @@ const JUMP_VELOCITY: int = -300.0
 var jump_count: int = 0
 var jump_count_limit: int = 1
 
+var is_death: bool = false
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coyote_timer: Timer = $CoyoteTimer
 
@@ -40,6 +42,9 @@ func _is_jump_available() -> bool:
 	return has_jumps_left || (is_on_floor() || !coyote_timer.is_stopped())
 
 func _update_animation(direction: float) -> void:
+	if is_death:
+		return
+		
 	if is_on_floor():
 		if direction == 0:
 			animated_sprite.play("idle")
@@ -52,7 +57,16 @@ func _update_animation(direction: float) -> void:
 		animated_sprite.flip_h = direction < 0
 
 func _update_movement(direction: float) -> void:
+	if is_death:
+		velocity.x = 0
+		return
+		
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+func _death() -> void:
+	print("Player die")
+	is_death =  true
+	animated_sprite.play("death")
