@@ -1,48 +1,58 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
+const SPEED: int = 130.0
+const JUMP_VELOCITY: int = -300.0
 
-const SPEED = 130.0
-const JUMP_VELOCITY = -300.0
+var jump_count: int = 0
+var jump_count_limit: int = 1
 
-@onready var animated_sprite: AnimatedSprite2D =  $AnimatedSprite2D
-@onready var coyote_timer: Timer =  $CoyoteTimer
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var coyote_timer: Timer = $CoyoteTimer
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
-	var is_jump_available: bool = is_on_floor() || !coyote_timer.is_stopped()
-	
+
 	if !is_on_floor():
 		velocity += get_gravity() * delta
-
-	if Input.is_action_just_pressed("jump") && is_jump_available:
-		velocity.y = JUMP_VELOCITY
 		
-	if is_on_floor():
-		if direction == 0:
-			animated_sprite.play("idle")
-		else: 
-			animated_sprite.play("run")
-	else: 
-		animated_sprite.play("jump")
-		
-	if direction < 0:
-		animated_sprite.flip_h = true
-	elif direction > 0:
-		animated_sprite.flip_h = false
-
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	if Input.is_action_just_pressed("jump") && _is_jump_available():
+		_jump()
 		
 	var was_on_floor: bool = is_on_floor()
 	
 	move_and_slide()
+
+	if !was_on_floor and is_on_floor():
+		jump_count = 0
+		
+	_update_animation(direction)
+	_update_movement(direction)
 	
-	if was_on_floor and  !is_on_floor():
-		print("Start coyot timer")
+	if was_on_floor and !is_on_floor():
 		coyote_timer.start()
 
+func _jump() -> void:
+	jump_count += 1
+	velocity.y = JUMP_VELOCITY
 
-func _on_label_ready() -> void:
-	pass # Replace with function body.
+func _is_jump_available() -> bool:
+	var has_jumps_left = jump_count < jump_count_limit
+	return has_jumps_left || (is_on_floor() || !coyote_timer.is_stopped())
+
+func _update_animation(direction: float) -> void:
+	if is_on_floor():
+		if direction == 0:
+			animated_sprite.play("idle")
+		else:
+			animated_sprite.play("run")
+	else:
+		animated_sprite.play("jump")
+	
+	if direction != 0:
+		animated_sprite.flip_h = direction < 0
+
+func _update_movement(direction: float) -> void:
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
