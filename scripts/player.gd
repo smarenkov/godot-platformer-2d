@@ -36,6 +36,9 @@ func _physics_process(delta: float) -> void:
 		coyote_timer.start()
 
 func _jump() -> void:
+	if is_death:
+		return
+		
 	jump_count += 1
 	jump_sound.play()
 	velocity.y = JUMP_VELOCITY
