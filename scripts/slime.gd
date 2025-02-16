@@ -1,12 +1,11 @@
 extends Node2D
 
-@export var speed: int = 20
+#@export var speed: int = 20
 @export var gravity: int = 500
 @export var max_fall_speed: int = 300
 
 var velocity: Vector2 = Vector2.ZERO
 var direction: int = 1
-
 @onready var ray_cast_ground: RayCast2D = $RayCasts/RayCastGround
 @onready var ray_cast_right: RayCast2D = $RayCasts/RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCasts/RayCastLeft
@@ -14,6 +13,8 @@ var direction: int = 1
 @onready var animated_sprite: AnimatedSprite2D  = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:	
+	var speed = %LevelManager.slime_speed
+	
 	if ray_cast_right.is_colliding() && direction == 1:
 		direction = -1
 		animated_sprite.flip_h = true
