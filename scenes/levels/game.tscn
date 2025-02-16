@@ -209,14 +209,19 @@ scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 0)
 script = ExtResource("3_xxqus")
 
+[node name="ColorRect" type="ColorRect" parent="UI"]
+offset_right = 124.0
+offset_bottom = 16.0
+color = Color(0, 0, 0, 0.262745)
+
 [node name="CoinCountLabel" type="Label" parent="UI"]
 offset_left = 2.5
-offset_top = 2.5
+offset_top = 3.75
 offset_right = 113.5
-offset_bottom = 10.5
+offset_bottom = 11.75
 theme_override_fonts/font = ExtResource("8_i4gmg")
 theme_override_font_sizes/font_size = 8
-text = "Coin count"
+text = "Coins collected: nn"
 label_settings = ExtResource("4_icv5y")
 
 [node name="TileMap" type="Node2D" parent="."]
