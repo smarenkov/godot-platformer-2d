@@ -233,5 +233,6 @@ stream = ExtResource("3_cyrb8")
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_d106i")
+volume_db = -14.36
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
