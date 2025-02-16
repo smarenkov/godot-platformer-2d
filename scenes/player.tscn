@@ -1,7 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://cm4qhlik1e8c2"]
+[gd_scene load_steps=32 format=3 uid="uid://cm4qhlik1e8c2"]
 
 [ext_resource type="Texture2D" uid="uid://c0efng2v52ips" path="res://assets/sprites/knight.png" id="1_bkpfa"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_xiokk"]
+[ext_resource type="AudioStream" uid="uid://cup5en2a0jpqk" path="res://assets/sounds/hurt.wav" id="3_cyrb8"]
+[ext_resource type="AudioStream" uid="uid://1mfuimsqox0s" path="res://assets/sounds/jump.wav" id="4_d106i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_plq3m"]
 atlas = ExtResource("1_bkpfa")
@@ -217,7 +219,6 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_5cjhc")
 animation = &"death"
 autoplay = "idle"
-frame_progress = 0.588988
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
@@ -226,5 +227,11 @@ shape = SubResource("CircleShape2D_l6y3n")
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cyrb8")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_d106i")
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
