@@ -8,8 +8,6 @@ const coin_count_limit: int = 12
 
 var slime_speed: int = 20
 
-
-
 func add_coin() -> void:
 	coin_count += 1
 	coin_pick_up.emit()
