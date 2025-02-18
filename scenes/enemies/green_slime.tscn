@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_25pca"]
 [ext_resource type="Texture2D" uid="uid://b62oar3k44pcr" path="res://assets/sprites/slime_green.png" id="2_hfvw1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_18gcw"]
-radius = 7.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxbsq"]
+size = Vector2(12, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s1mnl"]
 atlas = ExtResource("2_hfvw1")
@@ -108,14 +108,14 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Green Slime" type="Area2D"]
+[node name="Green Slime" type="CharacterBody2D"]
 position = Vector2(0, -8)
-gravity_point = true
+collision_layer = 0
 script = ExtResource("1_25pca")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_18gcw")
+shape = SubResource("RectangleShape2D_gxbsq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
@@ -128,9 +128,6 @@ frame_progress = 0.186986
 
 [node name="RayCastRight" type="RayCast2D" parent="RayCasts"]
 target_position = Vector2(15, 0)
-
-[node name="RayCastGround" type="RayCast2D" parent="RayCasts"]
-target_position = Vector2(0, 9)
 
 [node name="RayCastLeft" type="RayCast2D" parent="RayCasts"]
 target_position = Vector2(-15, 0)

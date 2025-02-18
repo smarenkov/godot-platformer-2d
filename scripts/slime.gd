@@ -1,12 +1,10 @@
-extends Node2D
+class_name Slime extends CharacterBody2D
 
-#@export var speed: int = 20
 @export var gravity: int = 500
 @export var max_fall_speed: int = 300
 
-var velocity: Vector2 = Vector2.ZERO
 var direction: int = 1
-@onready var ray_cast_ground: RayCast2D = $RayCasts/RayCastGround
+
 @onready var ray_cast_right: RayCast2D = $RayCasts/RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCasts/RayCastLeft
 
@@ -15,6 +13,9 @@ var direction: int = 1
 func _physics_process(delta: float) -> void:	
 	var speed = %LevelManager.slime_speed
 	
+	if !is_on_floor():
+		velocity += get_gravity() * delta
+	
 	if ray_cast_right.is_colliding() && direction == 1:
 		direction = -1
 		animated_sprite.flip_h = true
@@ -22,12 +23,7 @@ func _physics_process(delta: float) -> void:
 		direction = 1
 		animated_sprite.flip_h = false
 		
-	if not ray_cast_ground.is_colliding():
-		velocity.y += gravity * delta
-		velocity.y = min(velocity.y, max_fall_speed)
-	else:
-		velocity.y = 0
-		
 	velocity.x = direction * speed
-	position += velocity * delta
+	
+	move_and_slide()
 	

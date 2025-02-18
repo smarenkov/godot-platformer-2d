@@ -6,7 +6,7 @@ const JUMP_VELOCITY: int = -300.0
 var jump_count: int = 0
 var jump_count_limit: int = 1
 
-var is_death: bool = false
+var is_dead: bool = false
 
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		coyote_timer.start()
 
 func _jump() -> void:
-	if is_death:
+	if is_dead:
 		return
 		
 	jump_count += 1
@@ -48,7 +48,7 @@ func _is_jump_available() -> bool:
 	return has_jumps_left || (is_on_floor() || !coyote_timer.is_stopped())
 
 func _update_animation(direction: float) -> void:
-	if is_death:
+	if is_dead:
 		return
 		
 	if is_on_floor():
@@ -63,7 +63,7 @@ func _update_animation(direction: float) -> void:
 		animated_sprite.flip_h = direction < 0
 
 func _update_movement(direction: float) -> void:
-	if is_death:
+	if is_dead:
 		velocity.x = 0
 		return
 		
@@ -72,8 +72,9 @@ func _update_movement(direction: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
-func _death() -> void:
+func _die() -> void:
 	print("Player die")
-	is_death =  true
+	velocity.x = 1 * SPEED
+	is_dead =  true
 	death_sound.play()
 	animated_sprite.play("death")
