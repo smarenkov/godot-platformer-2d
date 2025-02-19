@@ -44,8 +44,11 @@ func _jump() -> void:
 	velocity.y = JUMP_VELOCITY
 
 func _is_jump_available() -> bool:
-	var has_jumps_left = jump_count < jump_count_limit
-	return has_jumps_left || (is_on_floor() || !coyote_timer.is_stopped())
+	var has_jumps_left: bool = jump_count < jump_count_limit
+	return has_jumps_left || (is_on_floor() || _is_coyote_time_available())
+	
+func _is_coyote_time_available() -> bool: 
+	return (!coyote_timer.is_stopped() && jump_count == 0)
 
 func _update_animation(direction: float) -> void:
 	if is_dead:
@@ -74,7 +77,6 @@ func _update_movement(direction: float) -> void:
 		
 func _die() -> void:
 	print("Player die")
-	velocity.x = 1 * SPEED
 	is_dead =  true
 	death_sound.play()
 	animated_sprite.play("death")
