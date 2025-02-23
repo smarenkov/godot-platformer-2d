@@ -155,6 +155,18 @@ texture = ExtResource("1_ryr4u")
 8:1/0 = 0
 8:2/0 = 0
 7:2/0 = 0
+9:9/0 = 0
+9:10/animation_frame_0/duration = 1.0
+9:10/animation_frame_1/duration = 1.0
+9:10/0 = 0
+12:9/animation_columns = 1
+12:9/animation_speed = 4.0
+12:9/animation_frame_0/duration = 1.0
+12:9/animation_frame_1/duration = 1.0
+12:9/animation_frame_2/duration = 1.0
+12:9/0 = 0
+8:9/0 = 0
+8:10/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 1
