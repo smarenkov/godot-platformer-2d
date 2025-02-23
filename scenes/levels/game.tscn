@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://de4q4rqen34jm"]
+[gd_scene load_steps=39 format=4 uid="uid://de4q4rqen34jm"]
 
 [ext_resource type="TileSet" uid="uid://c32n5jupsf1se" path="res://assets/tilemaps/world.tres" id="1_6x03c"]
 [ext_resource type="Script" path="res://scenes/levels/level_manager.gd" id="1_i5i0k"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cplkhsxfpkrap" path="res://scenes/enemies/green_slime.tscn" id="6_myw4e"]
 [ext_resource type="PackedScene" uid="uid://begfd5sjpx6kj" path="res://scenes/text_sign.tscn" id="7_7cp6g"]
 [ext_resource type="FontFile" uid="uid://b88pvtvpx3je7" path="res://assets/fonts/PixelOperator8.ttf" id="8_i4gmg"]
+[ext_resource type="Script" path="res://scenes/levels/camera.gd" id="9_eigw8"]
 [ext_resource type="Texture2D" uid="uid://c8tvmy1hhs0qg" path="res://assets/sprites/elizabeth_bioshock.png" id="13_7agcb"]
 [ext_resource type="Script" path="res://scenes/levels/meet_princess.gd" id="13_uwyva"]
 
@@ -210,6 +211,7 @@ script = ExtResource("1_i5i0k")
 unique_name_in_owner = true
 
 [node name="UI" type="CanvasLayer" parent="."]
+visible = false
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 0)
 script = ExtResource("3_xxqus")
@@ -337,16 +339,19 @@ light_mask = 7
 visibility_layer = 4
 position = Vector2(-60, -9)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("target")]
 light_mask = 0
 visibility_layer = 0
 zoom = Vector2(4, 4)
+process_callback = 0
 limit_left = 1500
 limit_top = -950
 limit_right = 3300
 limit_bottom = -350
 limit_smoothed = true
 position_smoothing_enabled = true
+script = ExtResource("9_eigw8")
+target = NodePath("..")
 
 [node name="Coins" type="Node2D" parent="."]
 
@@ -544,7 +549,6 @@ shape = SubResource("RectangleShape2D_r1nvr")
 
 [node name="Princess" type="Node2D" parent="."]
 unique_name_in_owner = true
-visible = false
 position = Vector2(1147, -421)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Princess"]
