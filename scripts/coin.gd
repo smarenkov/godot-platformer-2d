@@ -5,5 +5,6 @@ class_name Coin extends Area2D
 
 
 func _on_body_entered(body: CharacterBody2D) -> void:
+	print("Coin was picked")
 	animation_player.play("pick_up")
 	level_manager.add_coin()

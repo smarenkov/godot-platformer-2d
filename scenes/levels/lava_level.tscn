@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=4 uid="uid://pn43nou7odh2"]
 
 [ext_resource type="PackedScene" uid="uid://cm4qhlik1e8c2" path="res://scenes/player.tscn" id="1_r28pp"]
-[ext_resource type="Script" path="res://scripts/managers/lava_rise_manager.gd" id="1_rc5il"]
+[ext_resource type="Script" uid="uid://dghusa21n8ikp" path="res://scripts/managers/lava_rise_manager.gd" id="1_rc5il"]
 [ext_resource type="TileSet" uid="uid://c32n5jupsf1se" path="res://assets/tilemaps/world.tres" id="3_0xmxh"]
 [ext_resource type="PackedScene" uid="uid://ceeo4yr3pa5uq" path="res://scenes/kill_zone.tscn" id="3_8dnod"]
 [ext_resource type="PackedScene" uid="uid://dkn1sdbimvq2b" path="res://scenes/platforms/sand_platform.tscn" id="5_fuk51"]
-[ext_resource type="Script" path="res://scripts/lava_rise_trigger.gd" id="6_vgni2"]
+[ext_resource type="Script" uid="uid://cj8n4rlu8pfb0" path="res://scripts/lava_rise_trigger.gd" id="6_vgni2"]
 
 [sub_resource type="Animation" id="Animation_2gfao"]
 length = 0.001
@@ -40,8 +40,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hwq34"]
 _data = {
-"RESET": SubResource("Animation_2gfao"),
-"rise": SubResource("Animation_xo26n")
+&"RESET": SubResource("Animation_2gfao"),
+&"rise": SubResource("Animation_xo26n")
 }
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4tsr0"]
@@ -80,8 +80,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m2qp6"]
 _data = {
-"RESET": SubResource("Animation_2iq4u"),
-"move": SubResource("Animation_iieht")
+&"RESET": SubResource("Animation_2iq4u"),
+&"move": SubResource("Animation_iieht")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_urt2a"]
@@ -107,7 +107,7 @@ tile_set = ExtResource("3_0xmxh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TileMap/Lava"]
 libraries = {
-"": SubResource("AnimationLibrary_hwq34")
+&"": SubResource("AnimationLibrary_hwq34")
 }
 
 [node name="KillZone" parent="TileMap/Lava" instance=ExtResource("3_8dnod")]
@@ -167,7 +167,7 @@ position = Vector2(80, -136)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform3"]
 libraries = {
-"": SubResource("AnimationLibrary_m2qp6")
+&"": SubResource("AnimationLibrary_m2qp6")
 }
 autoplay = "move"
 

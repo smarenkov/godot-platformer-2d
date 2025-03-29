@@ -8,6 +8,7 @@ func _ready() -> void:
 	_update_coint_count_label()
 
 func _on_level_manager_coin_pick_up() -> void:
+	print("_on_level_manager_coin_pick_up")
 	_update_coint_count_label()
 	
 func _update_coint_count_label() -> void:

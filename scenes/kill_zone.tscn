@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ceeo4yr3pa5uq"]
 
-[ext_resource type="Script" path="res://scripts/kill_zone.gd" id="1_k7gnx"]
+[ext_resource type="Script" uid="uid://q1yo0bnjmskb" path="res://scripts/kill_zone.gd" id="1_k7gnx"]
 
 [node name="KillZone" type="Area2D"]
 light_mask = 4

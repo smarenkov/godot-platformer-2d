@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://bjmr8kjpobhd1"]
+
+[ext_resource type="Script" uid="uid://21sytrhrbbwu" path="res://scripts/princess.gd" id="1_6t68o"]
+[ext_resource type="Texture2D" uid="uid://c8tvmy1hhs0qg" path="res://assets/sprites/elizabeth_bioshock.png" id="2_h8nea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6370d"]
+size = Vector2(36, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_embpf"]
+atlas = ExtResource("2_h8nea")
+region = Rect2(1920, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mvny"]
+atlas = ExtResource("2_h8nea")
+region = Rect2(2560, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m30ua"]
+atlas = ExtResource("2_h8nea")
+region = Rect2(0, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4mru"]
+atlas = ExtResource("2_h8nea")
+region = Rect2(640, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iosxg"]
+atlas = ExtResource("2_h8nea")
+region = Rect2(1280, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y88us"]
+atlas = ExtResource("2_h8nea")
+region = Rect2(1920, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6tt3"]
+atlas = ExtResource("2_h8nea")
+region = Rect2(2560, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahj2c"]
+atlas = ExtResource("2_h8nea")
+region = Rect2(0, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4hml"]
+atlas = ExtResource("2_h8nea")
+region = Rect2(640, 1280, 640, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_81ur2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_embpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mvny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m30ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4mru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iosxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y88us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6tt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahj2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4hml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahj2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6tt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y88us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iosxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4mru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m30ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mvny")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[node name="Princess" type="Node2D"]
+script = ExtResource("1_6t68o")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6370d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.8147e-06, 1.97887e-05)
+scale = Vector2(0.100391, 0.100391)
+sprite_frames = SubResource("SpriteFrames_81ur2")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0443987
+flip_h = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

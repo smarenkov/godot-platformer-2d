@@ -7,6 +7,7 @@ func _on_ready() -> void:
 	_toggle_lable_visibility(false)
 
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+	print("Text sign was activated by: " + body.get_class())
 	_toggle_lable_visibility(true)
 
 func _on_area_2d_body_exited(body: CharacterBody2D) -> void:
